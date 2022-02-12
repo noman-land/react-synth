@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import { useCallback, useState } from 'react';
 import './App.css';
 
+import * as Tone from 'tone';
+
+const notes = ['C4', 'D4', 'E4', 'F4'];
+
+let synth;
+
 function App() {
+  const [started, setStarted] = useState(false);
+
+  const createClickHandler = useCallback(
+    note => () => {
+      if (!started) {
+        Tone.start();
+        synth = new Tone.Synth().toDestination();
+        setStarted(true);
+      }
+      synth.triggerAttackRelease(note, '8n');
+    },
+    [synth]
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {notes.map(note => (
+        <button key={note} onClick={createClickHandler(note)}>
+          {note}
+        </button>
+      ))}
     </div>
   );
 }
