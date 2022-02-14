@@ -6,9 +6,9 @@ export const useSynth = () => {
   const [started, setStarted] = useState(false);
 
   const onPlayNote = useCallback(
-    ({ target: { value: note } }) => {
+    async ({ target: { value: note } }) => {
       if (!started) {
-        Tone.start();
+        await Tone.start();
         synth.current = new Tone.Synth().toDestination();
         setStarted(true);
       }

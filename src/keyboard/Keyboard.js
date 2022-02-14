@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSynth } from './useSynth';
 
 const notes = ['C4', 'D4', 'E4', 'F4'];
