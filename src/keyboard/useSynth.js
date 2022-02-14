@@ -11,5 +11,6 @@ export const useSynth = () => {
     }
     synth.current.triggerAttackRelease(note, '8n');
   }, []);
+
   return { onPlayNote };
 };

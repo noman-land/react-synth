@@ -2,17 +2,10 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import { useSynth } from './useSynth';
 
+const startingNotes = ['C3', 'D3', 'Eb3', 'F3', 'G3', 'Ab3', 'B3', 'C4'];
+
 export const Keyboard = () => {
-  const [notes, setNotes] = useState([
-    'C3',
-    'D3',
-    'Eb3',
-    'F3',
-    'G3',
-    'Ab3',
-    'B3',
-    'C4',
-  ]);
+  const [notes, setNotes] = useState(startingNotes);
   const [lastNotePlayed, setLastNotePlayed] = useState();
   const { onPlayNote } = useSynth();
 
